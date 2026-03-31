@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Third-party apps
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'django_filters',
     'accounts',
 ]
 
@@ -121,3 +124,22 @@ STATIC_URL = 'static/'
 
 # -----------------Custom user model---------------------------------
 AUTH_USER_MODEL ='accounts.User'
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    #setting the pages to 10 globally
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10
+
+}
+
+# JWT Settings
+from datetime import timedelta
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1)
+}
