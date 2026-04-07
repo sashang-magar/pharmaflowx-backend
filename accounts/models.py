@@ -11,7 +11,6 @@ class User(AbstractUser):
         PHARMACY = "PHARMACY", "Pharmacy"
         ADMIN = "ADMIN", "Admin"
 
-
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15 , unique=True)
     organization = models.CharField(max_length=255)
