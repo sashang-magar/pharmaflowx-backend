@@ -122,6 +122,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # -----------------Custom user model---------------------------------
 AUTH_USER_MODEL ='accounts.User'
 
@@ -143,3 +144,7 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1)
 }
+
+#Correct timestamps in DB
+TIME_ZONE = 'Asia/Kathmandu'
+USE_TZ = True
