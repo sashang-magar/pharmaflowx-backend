@@ -4,12 +4,12 @@ from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only = True, validate_password = [validate_password] , required = True)
+    password = serializers.CharField(write_only = True, validators= [validate_password] , required = True)
     password2 = serializers.CharField(write_only = True , required=True)
 
     class Meta:
         model = User
-        fields = ['username' , 'password','password2' ,'email' , 'phone' , 'role' ,'address']
+        fields = ['username' , 'password','password2' ,'email' , 'phone' ,'organization' , 'role' ,'address']
         extra_kwargs = {
             'phone' :{'required' : True},
         }

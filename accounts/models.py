@@ -27,7 +27,8 @@ class ManufacturerProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE ,related_name="manufacturer_profile")
     license_expiry_date = models.DateField()
     license_number = models.CharField(max_length=255)     
-    company_name = models.CharField(max_length=255)   
+    company_name = models.CharField(max_length=255)
+       
 
 class LabProfile(models.Model):
     class LAB_TYPE(models.TextChoices):
