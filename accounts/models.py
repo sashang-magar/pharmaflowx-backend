@@ -28,6 +28,11 @@ class ManufacturerProfile(models.Model):
     license_expiry_date = models.DateField()
     license_number = models.CharField(max_length=255)     
     company_name = models.CharField(max_length=255)
+    trust_score = models.FloatField(default=0.0)
+
+    # Later in code while doing admin 
+    # def __str__(self):
+    #     return super().__str__()
        
 
 class LabProfile(models.Model):
@@ -47,7 +52,7 @@ class DistributorProfile(models.Model):
 
 class PharmacyProfile(models.Model):
     class PHARMACY_CHOICES(models.TextChoices):
-        RETAIL = 'Retail' , 'RETAIL'
+        RETAIL = 'RETAIL' , 'Retail'
         HOSPITAL = "HOSPITAL", "Hospital"
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE,related_name="pharmacy_profile")
     license_number = models.CharField(max_length=255)

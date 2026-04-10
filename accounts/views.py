@@ -26,7 +26,7 @@ class LoginView(APIView):
             'message': 'Login successful'
         }, status=status.HTTP_200_OK) 
 
-class Me(APIView):
+class MeView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self , request):
         user = request.user 
