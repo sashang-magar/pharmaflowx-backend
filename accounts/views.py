@@ -2,9 +2,13 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserLoginSerializer , UserRegistrationSerializer
+from .serializers import (UserLoginSerializer , UserRegistrationSerializer ,
+                          ManufactureSerializer,LabSerializer , RegulatorSerializer,
+                          PharmacySerializer , DistributorSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import RetrieveUpdateAPIView
+from .permissions import IsManufacturer , IsLab, IsPharmacy , IsDistributer , IsRegulator
 
 class RegisterView(APIView):
     def post(self , request):
@@ -41,3 +45,36 @@ class MeView(APIView):
 
         })
 
+class ManufacturerView(RetrieveUpdateAPIView):
+    permission_classes=[IsAuthenticated , IsManufacturer]
+    serializer_class = ManufactureSerializer
+
+    def get_object(self):
+        return self.request.user.manufacturer_profile
+class LabView(RetrieveUpdateAPIView):
+    permission_classes=[IsAuthenticated , IsLab]
+    serializer_class = LabSerializer
+
+    def get_object(self):
+        return self.request.user.lab_profile
+    
+class DistributerView(RetrieveUpdateAPIView):
+    permission_classes=[IsAuthenticated , IsDistributer]
+    serializer_class = DistributorSerializer
+
+    def get_object(self):
+        return self.request.user.distributer_profile
+    
+class PharmacyView(RetrieveUpdateAPIView):
+    permission_classes=[IsAuthenticated , IsPharmacy]
+    serializer_class = PharmacySerializer
+
+    def get_object(self):
+        return self.request.user.pharmacy_profile
+class RegulatorView(RetrieveUpdateAPIView):
+    permission_classes=[IsAuthenticated , IsRegulator]
+    serializer_class = RegulatorSerializer
+
+    def get_object(self):
+        return self.request.user.regulator_profile
+    

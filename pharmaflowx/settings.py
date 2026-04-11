@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_filters',
     'accounts',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -133,8 +134,15 @@ REST_FRAMEWORK = {
     ),
     #setting the pages to 10 globally
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10
+    "PAGE_SIZE": 10,
+    #Swagger
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Pharma Supply Chain API',
+    'DESCRIPTION': 'Backend for pharmaceutical supply chain management',
+    'VERSION': '1.0.0',
 }
 
 # JWT Settings

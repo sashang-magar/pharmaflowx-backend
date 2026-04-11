@@ -29,6 +29,7 @@ class ManufacturerProfile(models.Model):
     license_number = models.CharField(max_length=255)     
     company_name = models.CharField(max_length=255)
     trust_score = models.FloatField(default=0.0)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     # Later in code while doing admin 
     # def __str__(self):
@@ -37,18 +38,20 @@ class ManufacturerProfile(models.Model):
 
 class LabProfile(models.Model):
     class LAB_TYPE(models.TextChoices):
-        GOVERNMENT = "GOV", "Government"
+        GOVERNMENT = "GOVERNMENT", "Government"
         PRIVATE = "PRIVATE", "Private"
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE , related_name="lab_profile")
     accreditation_expiry_date = models.DateField()
     accreditation_number = models.CharField(max_length=255)
     lab_type = models.CharField(max_length=50 , choices=LAB_TYPE.choices)
     testing_capabilities = models.TextField(blank=True )
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class DistributorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE,related_name="distributor_profile")
     license_number = models.CharField(max_length=255)
     license_expiry_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class PharmacyProfile(models.Model):
     class PHARMACY_CHOICES(models.TextChoices):
@@ -58,7 +61,9 @@ class PharmacyProfile(models.Model):
     license_number = models.CharField(max_length=255)
     license_expiry_date = models.DateField()
     pharmacy_type = models.CharField(max_length=50 , choices=PHARMACY_CHOICES.choices)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class RegulatorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE ,related_name="regulator_profile") 
-    department = models.CharField(max_length=255)   
+    department = models.CharField(max_length=255)  
+    created_at = models.DateTimeField(auto_now_add=True) 
