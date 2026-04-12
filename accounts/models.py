@@ -12,10 +12,10 @@ class User(AbstractUser):
         ADMIN = "ADMIN", "Admin"
 
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=15 , unique=True)
-    organization = models.CharField(max_length=255)
-    role = models.CharField(max_length=55 , choices=ROLE_CHOICES.choices)
-    address = models.TextField()
+    phone = models.CharField(max_length=15 , unique=True,null=True, blank=True)
+    organization = models.CharField(max_length=255,null=True, blank=True)
+    role = models.CharField(max_length=55 , choices=ROLE_CHOICES.choices , default=ROLE_CHOICES.PHARMACY)
+    address = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -25,9 +25,9 @@ class User(AbstractUser):
 
 class ManufacturerProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE ,related_name="manufacturer_profile")
-    license_expiry_date = models.DateField()
-    license_number = models.CharField(max_length=255)     
-    company_name = models.CharField(max_length=255)
+    license_expiry_date = models.DateField(null=True, blank=True)
+    license_number = models.CharField(max_length=255,null=True, blank=True)     
+    company_name = models.CharField(max_length=255,null=True, blank=True)
     trust_score = models.FloatField(default=0.0)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -41,16 +41,16 @@ class LabProfile(models.Model):
         GOVERNMENT = "GOVERNMENT", "Government"
         PRIVATE = "PRIVATE", "Private"
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE , related_name="lab_profile")
-    accreditation_expiry_date = models.DateField()
-    accreditation_number = models.CharField(max_length=255)
-    lab_type = models.CharField(max_length=50 , choices=LAB_TYPE.choices)
+    accreditation_expiry_date = models.DateField(null=True, blank=True)
+    accreditation_number = models.CharField(max_length=255,null=True, blank=True)
+    lab_type = models.CharField(max_length=50 , choices=LAB_TYPE.choices,null=True, blank=True)
     testing_capabilities = models.TextField(blank=True )
     created_at = models.DateTimeField(auto_now_add=True)
 
 class DistributorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE,related_name="distributor_profile")
-    license_number = models.CharField(max_length=255)
-    license_expiry_date = models.DateField()
+    license_number = models.CharField(max_length=255,null=True, blank=True)
+    license_expiry_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class PharmacyProfile(models.Model):
@@ -58,12 +58,12 @@ class PharmacyProfile(models.Model):
         RETAIL = 'RETAIL' , 'Retail'
         HOSPITAL = "HOSPITAL", "Hospital"
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE,related_name="pharmacy_profile")
-    license_number = models.CharField(max_length=255)
-    license_expiry_date = models.DateField()
-    pharmacy_type = models.CharField(max_length=50 , choices=PHARMACY_CHOICES.choices)
+    license_number = models.CharField(max_length=255,null=True, blank=True)
+    license_expiry_date = models.DateField(null=True, blank=True)
+    pharmacy_type = models.CharField(max_length=50 , choices=PHARMACY_CHOICES.choices,null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class RegulatorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE ,related_name="regulator_profile") 
-    department = models.CharField(max_length=255)  
+    department = models.CharField(max_length=255,null=True, blank=True)  
     created_at = models.DateTimeField(auto_now_add=True) 
