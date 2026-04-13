@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'accounts',
     'drf_spectacular',
+    'medicines',
 ]
 
 MIDDLEWARE = [
