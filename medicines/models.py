@@ -22,9 +22,10 @@ class Medicine(models.Model):
     generic_name = models.CharField(max_length=255 , blank=True , null= True)
     composition = models.CharField(max_length=255 , blank=True , null= True)
     unit_type = models.CharField(max_length=50 , choices=UNIT_CHOICES.choices)
-    dosage_form = models.CharField(max_length=50 , choices=DOSAGE_CHOICE.choice)
+    dosage_form = models.CharField(max_length=50 , choices=DOSAGE_CHOICE.choices)
     strength = models.CharField(max_length=255 , blank=True , null= True)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.generic_name
@@ -50,6 +51,7 @@ class Batch(models.Model):
     mrp = models.DecimalField(max_digits=6 , decimal_places=2 ,blank=True , null=True)
     status = models.CharField(max_length=255 , choices=BATCH_CHOICES.choices) 
     created_at = models.DateTimeField(auto_now_add=True)  
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.batch_number
