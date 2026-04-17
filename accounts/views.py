@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -50,7 +49,7 @@ class ManufacturerView(RetrieveUpdateAPIView):
     serializer_class = ManufactureSerializer
 
     def get_object(self):
-        return self.request.user.manufacturer_profile
+        return self.request.user.manufacturer_profile # underscore, matches related_name
 class LabView(RetrieveUpdateAPIView):
     permission_classes=[IsAuthenticated , IsLab]
     serializer_class = LabSerializer

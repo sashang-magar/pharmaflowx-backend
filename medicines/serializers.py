@@ -16,4 +16,23 @@ class BatchSerializer(serializers.ModelSerializer):
         fields= [ 'id' ,'medicine', 'manufacturer','batch_number','manufacture_date','expiry_date',
                  'initial_quantity','current_quantity','mrp','status','created_at','updated_at']
         read_only_fields = ['medicine', 'manufacturer','status','created_at','updated_at']
+
+        def validate(self ,attrs):
+            expiry_date=attrs.get('expiry_date')
+            manufacture_date = attrs.get('manufacture_date')
+
+            if expiry_date and manufacture_date:
+                if expiry_date <= manufacture_date:
+                    raise serializers.ValidationError('Expiry date must be greater than manufacture date.')
+                
+            return attrs
+
+        def validate(self , attrs):
+            initial_quantity = attrs.get('initial_quantity')    
+            current_quantity = attrs.get('current_quantity')    
+
+            if initial_quantity and current_quantity:
+                if initial_quantity >= current_quantity:
+                    raise serializers.ValidationError('Current quantity should not exceed initial quantity')
+
                 
