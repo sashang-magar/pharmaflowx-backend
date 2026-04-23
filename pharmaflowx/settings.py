@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'drf_spectacular',
     'medicines',
+    'labs',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,8 @@ SIMPLE_JWT = {
 #Correct timestamps in DB
 TIME_ZONE = 'Asia/Kathmandu'
 USE_TZ = True
+
+#File storage
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

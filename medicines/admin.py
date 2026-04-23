@@ -7,5 +7,5 @@ class MedicineAdmin(admin.ModelAdmin):
 
 @admin.register(Batch)
 class BatchAdmin(admin.ModelAdmin):
-    list_display = ['manufacturer_date' , 'expiry_date' , 'initial_quantity' , 'current_quantity' , 'mrp']    
+    list_display = ['manufacture_date' , 'expiry_date' , 'initial_quantity' , 'current_quantity' , 'mrp']    
 
