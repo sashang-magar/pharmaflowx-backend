@@ -24,7 +24,7 @@ class LabReport(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.lab} - {self.result}'
+        return f'{self.lab} - {self.result}' 
     
     class Meta:
         ordering = ['-created_at']
