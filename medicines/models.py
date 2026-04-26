@@ -49,7 +49,7 @@ class Batch(models.Model):
     initial_quantity = models.PositiveIntegerField()
     current_quantity = models.PositiveIntegerField()
     mrp = models.DecimalField(max_digits=6 , decimal_places=2 ,blank=True , null=True)
-    status = models.CharField(max_length=255 , choices=BATCH_CHOICES.choices) 
+    status = models.CharField(max_length=255 , choices=BATCH_CHOICES.choices , default=BATCH_CHOICES.IN_PRODUCTION) 
     created_at = models.DateTimeField(auto_now_add=True)  
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -3,7 +3,7 @@ from medicines.models import Batch
 from rest_framework import serializers
 from .models import LabReport
 
-class LavReportSerializer(serializers.ModelSerializer):
+class LabReportSerializer(serializers.ModelSerializer):
     lab_name = serializers.CharField(source = 'lab.organization' , read_only = True)
     batch_number = serializers.CharField(source = 'batch.batch_number' , read_only = True)
     medicine_name = serializers.CharField(source = 'batch.medicine.brand_name' , read_only = True)
