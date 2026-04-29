@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from labs.models import LabReport
 from labs.serializers import LabReportSerializer 
 from rest_framework.permissions import IsAuthenticated
 from accounts.permissions import IsManufacturer, IsLab, IsRegulator
@@ -13,4 +14,6 @@ class LabReportView(ModelViewSet):
         return [IsAuthenticated()]
     
     def get_queryset(self):
-        return super().get_queryset()
+        user = self.request.user
+        if user.role == 'LAB':
+            return LabReport.objects.filter(lab=user).select_related('batch__medicine')
