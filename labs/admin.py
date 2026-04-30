@@ -1,3 +1,7 @@
 from django.contrib import admin
+from . models import LabReport
 
-# Register your models here.
+@admin.register(LabReport)
+class LabReportAdmin(admin.ModelAdmin):
+    list_display = ['batch' ,'lab' , 'result','report_status' ]
+
