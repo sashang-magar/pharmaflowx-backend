@@ -29,21 +29,9 @@ class LabReportView(ModelViewSet):
         return LabReport.objects.none()
     
     def perform_create(self, serializer):
-        user = self.request.user
-        report = self.get_object()
-
-        if user.role == 'LAB':
-            if report.lab != user:
-                raise PermissionDenied('Only lab can submit report')
-        
-            if report.report_status != LabReport.LAB_STATUS.PENDING:
-                raise PermissionDenied('Cannot edit subbmited/reviewed report')
-            
-            serializer.save()
-            return
-        
-        elif user.role == 'MANUFACTURER':
-            serializer.save(report_status = LabReport.LAB_STATUS.REVIEWED)
-
-        else:
-            raise PermissionDenied('You cannot update lab report')    
+        serializer.save(
+            lab = self.request.user.lab_profile,
+            report_status = LabReport.LAB_STATUS.PENDING
+        )
+  
+  

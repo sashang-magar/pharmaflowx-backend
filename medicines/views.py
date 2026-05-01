@@ -30,7 +30,7 @@ class MedicineViewSet(ModelViewSet):
         return Medicine.objects.none()
     
     def perform_create(self, serializer):
-        return serializer.save(manufacturer = self.request.user)
+        return serializer.save(manufacturer = self.request.user.manufacturer_profile)
 
 class BatchViewSet(ModelViewSet):
     serializer_class = BatchSerializer
@@ -52,6 +52,6 @@ class BatchViewSet(ModelViewSet):
         return Batch.objects.none()
     
     def perform_create(self, serializer):
-        return serializer.save(manufacturer = self.request.user , status = 'IN_PRODUCTION')
+        return serializer.save(manufacturer = self.request.user.manufacturer_profile , status = 'IN_PRODUCTION')
 
 
