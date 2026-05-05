@@ -18,10 +18,10 @@ class LabReportView(ModelViewSet):
         user = self.request.user
 
         if user.role == 'LAB':
-            return LabReport.objects.filter(lab=user).select_related('batch__medicine')
+            return LabReport.objects.filter(lab=user.lab_profile).select_related('batch__medicine')
         
         if user.role == 'MANUFACTURER':
-            return LabReport.objects.filter(batch__manufacturer = user).select_related('batch__medicine')
+            return LabReport.objects.filter(batch__manufacturer = user.manufacturer_profile).select_related('batch__medicine')
         
         if user.role == 'REGULATOR':
             return LabReport.objects.filter(report_status =LabReport.LAB_STATUS.SUBMITTED).select_related('batch__medicine')

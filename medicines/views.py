@@ -22,7 +22,7 @@ class MedicineViewSet(ModelViewSet):
         user = self.request.user
 
         if user.role == 'MANUFACTURER':
-            return Medicine.objects.filter(manufacturer = user)
+            return Medicine.objects.filter(manufacturer = user.manufacturer_profile)
         
         elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTER']:
             return Medicine.objects.all()
@@ -44,7 +44,7 @@ class BatchViewSet(ModelViewSet):
         user = self.request.user
 
         if user.role == 'MANUFACTURER':
-            return Batch.objects.filter(manufacturer = user).select_related('medicine')
+            return Batch.objects.filter(manufacturer = user.manufacturer_profile).select_related('medicine')
         
         elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTER']:
             return Batch.objects.all().select_related('medicine' ,'manufacturer')

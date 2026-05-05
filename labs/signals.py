@@ -8,5 +8,5 @@ def update_status_of_batch_report(sender , instance , created , **kwargs):
     if created:
         if instance.batch.status == Batch.BATCH_CHOICES.LAB_TESTING:
             LabReport.objects.filter(pk = instance.pk).update(
-                report_status = LabReport.BATCH_CHOICES.SUBMITTED
+                report_status = LabReport.LAB_STATUS.SUBMITTED
             )

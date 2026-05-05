@@ -28,8 +28,8 @@ class BatchSerializer(serializers.ModelSerializer):
         initial_quantity = attrs.get('initial_quantity')    
         current_quantity = attrs.get('current_quantity')    
 
-        if initial_quantity and current_quantity:
-            if initial_quantity > current_quantity:
+        if current_quantity and  initial_quantity:
+            if current_quantity > initial_quantity:
                 raise serializers.ValidationError('Current quantity should not exceed initial quantity')
 
             
