@@ -15,4 +15,17 @@ class ApprovalSerializer(serializers.ModelSerializer):
         read_only_fields = ['id' , 'created_at' , 'updated_at']
 
     def validate_lab_report(self , lab_report):
-        self
+        if lab_report.report_status != LabReport.LAB_STATUS.SUBMITTED:
+            raise serializers.ValidationError(f"Lab report status{lab_report.report_status}."
+                                              " Only can approve when lab report is submitted")
+        
+        if hasattr(lab_report , 'approval') and self.instance is None:
+            raise serializers.ValidationError("An approval already exist for this lab report")
+        
+        return lab_report
+    
+    def validate_status(self , value):
+        if self.instance and value == Approval.STATUS.UNDER_REVIEW:
+            raise serializers.ValidationError(" Cannot revert status back to Under Review")
+        
+        return value
