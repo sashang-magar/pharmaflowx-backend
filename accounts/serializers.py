@@ -71,7 +71,7 @@ class ManufactureSerializer(serializers.ModelSerializer):
     address = serializers.CharField(source='user.address', read_only=True)
     class Meta:
         model = ManufacturerProfile
-        fields = ['id' , 'email', 'phone', 'organization','address', 'license_expiry_date' ,
+        fields = ['id' , 'email','username', 'phone', 'organization','address', 'license_expiry_date' ,
                   'license_number' , 'company_name' ,'trust_score' , 'created_at']
         read_only_fields = ['id' , 'trust_score' , 'created_at' ]
 
