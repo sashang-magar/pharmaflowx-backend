@@ -23,3 +23,10 @@ class ApprovalView(ModelViewSet):
             return Approval.objects.filter(
                 lab_report__batch__manufacturer=user.manufacturer_profile
             ).select_related('lab_report__batch__medicine')
+        
+        if user.role == 'LAB':
+            return Approval.objects.filter(
+                lab_report__lab=user.lab_profile
+            ).select_related('lab_report__batch__medicine')
+
+        return Approval.objects.none()
