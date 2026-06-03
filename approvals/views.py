@@ -30,3 +30,26 @@ class ApprovalView(ModelViewSet):
             ).select_related('lab_report__batch__medicine')
 
         return Approval.objects.none()
+    
+    def perform_create(self, serializer):
+        if self.request.user.role != 'REGULATOR':
+            raise PermissionDenied("Only regulators can create approvals.")
+        serializer.save(
+            regulator=self.request.user,
+            status=Approval.STATUS.UNDER_REVIEW
+        )
+
+    def perform_update(self, serializer):
+        user = self.request.user
+        approval = self.get_object()
+
+        if user.role != 'REGULATOR':
+            raise PermissionDenied("Only regulators can update approvals.")
+
+        if approval.regulator != user:
+            raise PermissionDenied("You can only update your own approvals.")
+
+        serializer.save()
+
+    def destroy(self, request, *args, **kwargs):
+        raise PermissionDenied("Approval records cannot be deleted.")
