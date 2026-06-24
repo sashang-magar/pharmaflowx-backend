@@ -12,7 +12,7 @@ class LabReport(models.Model):
         PASS = 'PASS' , 'Pass'   
         FAIL = 'FAIL' , 'Fail'
         INCONCLUSIVE = 'INCONCLUSIVE' , 'Inconclusive'
-
+        
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE , related_name='lab_reports')
     lab = models.ForeignKey(LabProfile , on_delete=models.CASCADE , related_name = 'lab_reports' )
     remark = models.TextField(blank=True , null=True)
