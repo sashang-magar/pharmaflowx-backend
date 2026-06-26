@@ -11,6 +11,8 @@ class Inventory(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    reorder_threshold = models.PositiveIntegerField(default=100)
+
     def __str__(self):
         return f"{self.distributor.user.organization} — {self.batch.batch_number} ({self.quantity})"
 
