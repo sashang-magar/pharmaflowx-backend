@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import PharmacyProfile, DistributorProfile
+from medicines.models import Batch
 from inventory.models import Inventory
 
 
@@ -68,14 +69,21 @@ class OrderItem(models.Model):
         on_delete=models.CASCADE,
         related_name='order_items'
     )
+    batch = models.ForeignKey(         
+        Batch,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='order_items'
+    )
     quantity = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2,null=True, blank=True)  
 
     def __str__(self):
-        return f"{self.inventory.batch.batch_number} x {self.quantity}"
+        return f"{self.batch.batch_number} x {self.quantity} = {self.total_price}"
 
     class Meta:
-        # same inventory item cannot appear twice in one order
         constraints = [
             models.UniqueConstraint(
                 fields=['order', 'inventory'],
@@ -95,9 +103,9 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviews'
     )
-    rating = models.PositiveIntegerField()
+    rating = models.DecimalField(max_digits=3, decimal_places=1)
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Review for Order #{self.order.id} — {self.rating}/5"
+        return f"Review Order#{self.order.id} — {self.rating}/5"

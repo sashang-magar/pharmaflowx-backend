@@ -5,7 +5,7 @@ from .models import Order, OrderItem, Review
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0
-    readonly_fields = ['batch', 'unit_price', 'total_price']
+    readonly_fields = [ 'unit_price']
 
 
 @admin.register(Order)
