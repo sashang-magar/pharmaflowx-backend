@@ -24,7 +24,7 @@ class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = ['id' ,'batch' , 'batch_number' , 'medicine_name', 'expiry_date', 'mrp', 'distributor_name',
-                  'location' , 'quantity' , 'reserved_quantity' , 'available_quantity', 'last_updated' , 'created_at']
+                  'location' , 'reorder_threshold' , 'quantity' , 'reserved_quantity' , 'available_quantity', 'last_updated' , 'created_at']
         read_only_fields = [
             'id', 'distributor_name', 'last_updated', 'created_at'
         ]

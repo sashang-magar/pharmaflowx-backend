@@ -70,10 +70,20 @@ class InventoryView(ModelViewSet):
             raise PermissionDenied("Only distributors can view low stock.")
 
         # items where available quantity is below 100 — adjust threshold as needed
+        # queryset = Inventory.objects.filter(
+        #     distributor=request.user.distributor_profile,
+        #     quantity__lt=100
+        # ).select_related('batch__medicine')
+
+        #changes from this to below due to reorder point algorithm
+        
+        # compare actual quantity against calculated reorder_threshold
+        from django.db.models import F
         queryset = Inventory.objects.filter(
             distributor=request.user.distributor_profile,
-            quantity__lt=100
+            quantity__lt=F('reorder_threshold')  # dynamic — uses each item's threshold
         ).select_related('batch__medicine')
+
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
