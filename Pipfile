@@ -10,6 +10,7 @@ djangorestframework-simplejwt = "*"
 django-filter = "*"
 drf-spectacular = "*"
 psycopg2-binary = "*"
+python-decouple = "*"
 
 [dev-packages]
 
