@@ -25,7 +25,7 @@ urlpatterns = [
     path('api/' , include('labs.urls')),
     path('api/' , include('approvals.urls')),
     path('api/', include('inventory.urls')),
-
+    path('api/', include('orders.urls')),
 
     #for swaggers
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
