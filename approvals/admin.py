@@ -11,8 +11,7 @@ class ApprovalAdmin(admin.ModelAdmin):
     list_filter = ['status']
     search_fields = [
         'lab_report__batch__batch_number',
-        'lab_report__batch__medicine__brand_name',
-        'regulator__organization'
+        'lab_report__batch__medicine__brand_name'
     ]
     readonly_fields = ['approved_at', 'created_at', 'updated_at']
     ordering = ['-created_at']
