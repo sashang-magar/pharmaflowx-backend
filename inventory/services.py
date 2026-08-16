@@ -1,7 +1,7 @@
 from django.utils import timezone
 from datetime import timedelta
 from .models import Inventory
-
+from django.db.models import Sum 
 
 def calculate_reorder_point(inventory):
     """
@@ -26,9 +26,7 @@ def calculate_reorder_point(inventory):
         inventory__batch__medicine=inventory.batch.medicine,
         inventory__distributor=inventory.distributor,
         order__ordered_at__gte=since,
-    ).aggregate(
-        total=__import__('django.db.models', fromlist=['Sum']).Sum('quantity')
-    )['total'] or 0
+    ).aggregate(total=Sum('quantity'))['total'] or 0
 
     avg_daily = total_ordered / days
     reorder_point = (avg_daily * lead_time_days) + safety_stock
