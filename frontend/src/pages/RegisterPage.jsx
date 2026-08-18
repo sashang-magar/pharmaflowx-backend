@@ -40,7 +40,7 @@ export default function RegisterPage() {
 
     setLoading(true)
     try {
-      await api.post('auth/register/', form)
+      await api.post('accounts/auth/register/', form)
       navigate('/login', { replace: true })
     } catch (err) {
       // Django returns field-level errors as an object
