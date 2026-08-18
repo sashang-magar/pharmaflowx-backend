@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   // Auto-login if token exists
   useEffect(() => {
     if (token) {
-      api.get('auth/me/')
+      api.get('accounts/auth/me/')
         .then((res) => {
           setUser(res.data);
           setLoading(false);
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
  
   const login = async (username, password) => {
     // Step 1: Get tokens
-    const loginRes = await api.post('auth/login/', { username, password });
+    const loginRes = await api.post('accounts/auth/login/', { username, password });
     const { access } = loginRes.data;
     
     // Step 2: Store token
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     setToken(access);
 
     // Step 3: Fetch user data (role, etc.)
-    const meRes = await api.get('auth/me/', {
+    const meRes = await api.get('accounts/auth/me/', {
       headers: { Authorization: `Bearer ${access}` }
     });
     
