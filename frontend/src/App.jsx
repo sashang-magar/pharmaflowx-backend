@@ -4,9 +4,10 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import ManufacturerDashboard from './pages/ManufacturerDashboard'
 
 // Placeholder dashboard components (you'll build these next)
-const ManufacturerDashboard = () => <h1>Manufacturer Dashboard</h1>;
+//const ManufacturerDashboard = () => <h1>Manufacturer Dashboard</h1>;
 const LabDashboard = () => <h1>Lab Dashboard</h1>;
 const RegulatorDashboard = () => <h1>Regulator Dashboard</h1>;
 const DistributorDashboard = () => <h1>Distributor Dashboard</h1>;
