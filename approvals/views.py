@@ -36,7 +36,7 @@ class ApprovalView(ModelViewSet):
             raise PermissionDenied("Only regulators can create approvals.")
         serializer.save(
             regulator=self.request.user.regulator_profile,
-            status=Approval.STATUS.UNDER_REVIEW
+            status="UNDER_REVIEW"
         )
 
     def perform_update(self, serializer):
@@ -46,10 +46,22 @@ class ApprovalView(ModelViewSet):
         if user.role != 'REGULATOR':
             raise PermissionDenied("Only regulators can update approvals.")
 
-        if approval.regulator != user:
+        if approval.regulator.user != user:
             raise PermissionDenied("You can only update your own approvals.")
 
-        serializer.save()
+        approval = serializer.save()
+
+        if approval.status in ['APPROVED', 'REJECTED']:
+            lab_report = approval.lab_report
+            batch = lab_report.batch
+            
+            # Update batch status
+            batch.status = approval.status
+            batch.save()
+            
+            # Update lab report status
+            lab_report.report_status = 'REVIEWED'
+            lab_report.save()
 
     def destroy(self, request, *args, **kwargs):
         raise PermissionDenied("Approval records cannot be deleted.")
