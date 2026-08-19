@@ -5,11 +5,13 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ManufacturerDashboard from './pages/ManufacturerDashboard'
+import LabDashboard from './pages/LabDashboard'
+import RegulatorDashboard from './pages/RegulatorDashboard'
 
 // Placeholder dashboard components (you'll build these next)
 //const ManufacturerDashboard = () => <h1>Manufacturer Dashboard</h1>;
-const LabDashboard = () => <h1>Lab Dashboard</h1>;
-const RegulatorDashboard = () => <h1>Regulator Dashboard</h1>;
+// const LabDashboard = () => <h1>Lab Dashboard</h1>;
+// const RegulatorDashboard = () => <h1>Regulator Dashboard</h1>;
 const DistributorDashboard = () => <h1>Distributor Dashboard</h1>;
 const PharmacyDashboard = () => <h1>Pharmacy Dashboard</h1>;
 
