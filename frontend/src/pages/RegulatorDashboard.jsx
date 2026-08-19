@@ -152,7 +152,7 @@ export default function RegulatorDashboard() {
   const fetchReports = async () => {
     setLoadingReports(true)
     try {
-      const res = await api.get('lab-reports/')
+      const res = await api.get('labreports/')
       const data = res.data.results || res.data
       setReports(data)
     } catch {

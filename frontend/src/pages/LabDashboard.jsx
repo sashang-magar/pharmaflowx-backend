@@ -72,7 +72,7 @@ function SubmitReportModal({ batch, onClose, onSubmitted }) {
       formData.append('tested_at', form.tested_at)
       if (file) formData.append('report_files', file)
 
-      await api.post('lab-reports/', formData, {
+      await api.post('labreports/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       onSubmitted()
@@ -178,7 +178,7 @@ export default function LabDashboard() {
   const fetchReports = async () => {
     setLoadingReports(true)
     try {
-      const res = await api.get('lab-reports/')
+      const res = await api.get('labreports/')
       const data = res.data.results || res.data
       setReports(data)
     } catch {

@@ -34,4 +34,3 @@ class LabReportView(ModelViewSet):
             report_status = LabReport.LAB_STATUS.PENDING
         )
   
-  

@@ -14,7 +14,7 @@ class ApprovalView(ModelViewSet):
 
         if user.role == 'REGULATOR':
             return Approval.objects.filter(
-                regulator = user
+                regulator = user.regulator_profile
                 ).select_related(
                     'lab_report__batch__medicine',
                     'lab_report__batch__manufacturer'
@@ -35,7 +35,7 @@ class ApprovalView(ModelViewSet):
         if self.request.user.role != 'REGULATOR':
             raise PermissionDenied("Only regulators can create approvals.")
         serializer.save(
-            regulator=self.request.user,
+            regulator=self.request.user.regulator_profile,
             status=Approval.STATUS.UNDER_REVIEW
         )
 

@@ -4,7 +4,7 @@ from .views import LabReportView
 
 router = DefaultRouter()
 
-router.register('labreports/' , LabReportView , basename='labreport')
+router.register('labreports' , LabReportView , basename='labreport')
 
 urlpatterns = [
     path('' , include(router.urls))

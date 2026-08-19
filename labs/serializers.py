@@ -11,7 +11,7 @@ class LabReportSerializer(serializers.ModelSerializer):
         model = LabReport
         fields = ['id' ,'batch' ,'lab_name' ,'batch_number','medicine_name','remark' ,
                   'result' ,'tested_at' ,'report_status' ,'report_files' ,'created_at' ]
-        read_only_fields = ['id','batch' ,'report_status' ,'tested_at', 'created_at']
+        read_only_fields = ['id','report_status' ,'tested_at', 'created_at']
 
     def validate_tested_at(self , value):
         if value > timezone.now():
