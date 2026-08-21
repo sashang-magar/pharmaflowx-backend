@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (RegisterView, LoginView , MeView , ManufacturerView ,
-                     LabView , RegulatorView , PharmacyView , DistributerView)
+                     LabView , RegulatorView , PharmacyView , DistributorView)
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -14,5 +14,5 @@ urlpatterns = [
     path('profiles/lab/' ,LabView.as_view()),
     path('profiles/regulator/' ,RegulatorView.as_view()),
     path('profiles/pharmacy/' ,PharmacyView.as_view()),
-    path('profiles/distributer/' ,DistributerView.as_view()),
+    path('profiles/distributor/' ,DistributorView.as_view()),
 ]

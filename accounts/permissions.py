@@ -9,7 +9,7 @@ class IsLab(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == User.ROLE_CHOICES.LAB
     
-class IsDistributer(permissions.BasePermission):
+class IsDistributor(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == User.ROLE_CHOICES.DISTRIBUTOR
     

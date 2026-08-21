@@ -23,14 +23,17 @@ class MedicineViewSet(ModelViewSet):
 
         if user.role == 'MANUFACTURER':
             return Medicine.objects.filter(manufacturer = user.manufacturer_profile)
+
+        elif user.role == 'DISTRIBUTOR':
+            return Batch.objects.filter(status='APPROVED').select_related('medicine', 'manufacturer')
         
-        elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTER']:
+        elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTOR']:
             return Medicine.objects.all()
         
         return Medicine.objects.none()
     
     def perform_create(self, serializer):
-        return serializer.save(manufacturer = self.request.user.manufacturer_profile)
+        return serializer.save(manufacturer = self.request.user.manufacturer_profile, status='IN_PRODUCTION')
 
 class BatchViewSet(ModelViewSet):
     serializer_class = BatchSerializer
@@ -46,7 +49,7 @@ class BatchViewSet(ModelViewSet):
         if user.role == 'MANUFACTURER':
             return Batch.objects.filter(manufacturer = user.manufacturer_profile).select_related('medicine')
         
-        elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTER']:
+        elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTOR']:
             return Batch.objects.all().select_related('medicine' ,'manufacturer')
         
         return Batch.objects.none()

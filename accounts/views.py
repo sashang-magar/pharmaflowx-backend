@@ -7,7 +7,7 @@ from .serializers import (UserLoginSerializer , UserRegistrationSerializer ,
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import RetrieveUpdateAPIView
-from .permissions import IsManufacturer , IsLab, IsPharmacy , IsDistributer , IsRegulator
+from .permissions import IsManufacturer , IsLab, IsPharmacy , IsDistributor , IsRegulator
 
 class RegisterView(APIView):
     def post(self , request):
@@ -57,12 +57,12 @@ class LabView(RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user.lab_profile
     
-class DistributerView(RetrieveUpdateAPIView):
-    permission_classes=[IsAuthenticated , IsDistributer]
+class DistributorView(RetrieveUpdateAPIView):
+    permission_classes=[IsAuthenticated , IsDistributor]
     serializer_class = DistributorSerializer
 
     def get_object(self):
-        return self.request.user.distributer_profile
+        return self.request.user.distributor_profile
     
 class PharmacyView(RetrieveUpdateAPIView):
     permission_classes=[IsAuthenticated , IsPharmacy]

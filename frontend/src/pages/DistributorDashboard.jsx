@@ -56,7 +56,7 @@ function AddInventoryModal({ onClose, onAdded }) {
     api.get('batches/')
       .then(res => {
         const data = res.data.results || res.data
-        setApprovedBatches(data)
+        setApprovedBatches(data.filter(b => b.status === 'APPROVED'))
       })
       .catch(() => setError('Failed to load batches.'))
       .finally(() => setFetchingBatches(false))

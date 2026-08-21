@@ -4,8 +4,8 @@ from .models import Order, OrderItem, Review
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
-    extra = 0
-    readonly_fields = [ 'unit_price']
+    extra = 1
+    fields = ['inventory', 'batch', 'quantity', 'unit_price']
 
 
 @admin.register(Order)

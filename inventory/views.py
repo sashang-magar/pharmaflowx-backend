@@ -7,7 +7,7 @@ from django.utils import timezone
 from datetime import timedelta
 from .models import Inventory
 from .serializers import InventorySerializer
-from accounts.permissions import IsDistributer
+from accounts.permissions import IsDistributor
 
 class InventoryView(ModelViewSet):
     serializer_class = InventorySerializer

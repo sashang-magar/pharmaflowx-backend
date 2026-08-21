@@ -80,8 +80,13 @@ def deliver_order(order):
 
     for item in order.items.select_related('inventory'):
         inventory = item.inventory
+        # Deduct actual quantity
         inventory.quantity -= item.quantity
-        inventory.reserved_quantity -= item.quantity
+        #reduce reserved — never go below 0
+        inventory.reserved_quantity -= max(
+            0,
+            inventory.reserved_quantity - item.quantity
+        )
         inventory.save(update_fields=['quantity', 'reserved_quantity', 'last_updated'])
 
     order.status = Order.STATUS.DELIVERED
@@ -103,7 +108,11 @@ def cancel_order(order):
 
     for item in order.items.select_related('inventory'):
         inventory = item.inventory
-        inventory.reserved_quantity -= item.quantity
+        #safely release reserved — never go below 0
+        inventory.reserved_quantity = max(
+            0,
+            inventory.reserved_quantity - item.quantity
+        )
         inventory.save(update_fields=['reserved_quantity', 'last_updated'])
 
     order.status = Order.STATUS.CANCELLED
