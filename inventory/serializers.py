@@ -23,10 +23,10 @@ class InventorySerializer(serializers.ModelSerializer):
     available_quantity = serializers.SerializerMethodField()
     class Meta:
         model = Inventory
-        fields = ['id' ,'batch' , 'batch_number' , 'medicine_name', 'expiry_date', 'mrp', 'distributor_name',
+        fields = ['id' ,'batch' , 'batch_number' , 'medicine_name', 'expiry_date', 'mrp','distributor_id', 'distributor_name',
                   'location' , 'reorder_threshold' , 'quantity' , 'reserved_quantity' , 'available_quantity', 'last_updated' , 'created_at']
         read_only_fields = [
-            'id', 'distributor_name', 'last_updated', 'created_at'
+            'id', 'distributor_id', 'distributor_name', 'last_updated', 'created_at'
         ]
 
     def get_available_quantity(self, obj):
