@@ -60,7 +60,8 @@ INSTALLED_APPS = [
 #     'http://localhost:5173',  # Vite default port
 #     "http://127.0.0.1:5173",
 # ]
-CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='http://localhost:5173,http://127.0.0.1:5173').split(',')
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173').split(',')
+print("CORS_ALLOWED_ORIGINS:", CORS_ALLOWED_ORIGINS)  # ← TEMPORARY
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
