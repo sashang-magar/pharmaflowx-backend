@@ -5,12 +5,15 @@ name = "pypi"
 
 [packages]
 django = "*"
-djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 django-filter = "*"
 drf-spectacular = "*"
 psycopg2-binary = "*"
 python-decouple = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
+djangorestframework = "==3.18.0"
 
 [dev-packages]
 
