@@ -83,7 +83,7 @@ def deliver_order(order):
         # Deduct actual quantity
         inventory.quantity -= item.quantity
         #reduce reserved — never go below 0
-        inventory.reserved_quantity -= max(
+        inventory.reserved_quantity = max(
             0,
             inventory.reserved_quantity - item.quantity
         )

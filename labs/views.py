@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 from labs.models import LabReport
 from labs.serializers import LabReportSerializer 
 from rest_framework.permissions import IsAuthenticated
-from accounts.permissions import IsManufacturer, IsLab, IsRegulator
+from accounts.permissions import IsLab
 from rest_framework.exceptions import PermissionDenied
 
 class LabReportView(ModelViewSet):

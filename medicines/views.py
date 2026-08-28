@@ -25,7 +25,7 @@ class MedicineViewSet(ModelViewSet):
             return Medicine.objects.filter(manufacturer = user.manufacturer_profile)
 
         elif user.role == 'DISTRIBUTOR':
-            return Batch.objects.filter(status='APPROVED').select_related('medicine', 'manufacturer')
+            return Medicine.objects.all()
         
         elif user.role in ['LAB' , 'REGULATOR' , 'PHARMACY' , 'DISTRIBUTOR']:
             return Medicine.objects.all()
