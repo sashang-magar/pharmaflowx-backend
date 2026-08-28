@@ -4,9 +4,8 @@
 A full-stack pharmaceutical supply chain management system built with Django REST Framework and React.
 
 ## Live Demo
-- **Frontend**: [https://pharmaflowx-frontend.vercel.app](https://pharmaflowx-frontend.vercel.app)
+- **Frontend**: [https://pharmaflowx-backend.vercel.app](https://pharmaflowx-backend.vercel.app)
 - **Backend API**: [https://pharmaflowx-backend.onrender.com/api/](https://pharmaflowx-backend.onrender.com/api/)
-- **API Docs**: [https://pharmaflowx-backend.onrender.com/api/docs/](https://pharmaflowx-backend.onrender.com/api/docs/)
 
 ## Tech Stack
 - **Backend**: Django 5, Django REST Framework, PostgreSQL, JWT Authentication

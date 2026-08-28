@@ -55,6 +55,6 @@ class BatchViewSet(ModelViewSet):
         return Batch.objects.none()
     
     def perform_create(self, serializer):
-        return serializer.save(manufacturer = self.request.user.manufacturer_profile , status = 'IN_PRODUCTION')
+        return serializer.save(manufacturer = self.request.user.manufacturer_profile )
 
 
