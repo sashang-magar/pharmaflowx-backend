@@ -194,6 +194,7 @@ const styles = {
     outline: 'none',
     boxSizing: 'border-box',
     background: '#fff',
+    color: '#1a1a1a',
   },
   button: {
     width: '100%',
