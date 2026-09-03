@@ -395,5 +395,6 @@ const s = {
     border: '1px solid #e0e0e0', borderRadius: '8px',
     fontSize: '13px', outline: 'none',
     boxSizing: 'border-box', background: '#fff',
+    color: '#1a1a1a',
   },
 }
