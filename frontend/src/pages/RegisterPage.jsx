@@ -164,9 +164,10 @@ const styles = {
     width: '100%',
     maxWidth: '400px',
     boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+    color: '#1a1a1a',
   },
-  title: { fontSize: '22px', fontWeight: '700', marginBottom: '4px' },
-  subtitle: { fontSize: '13px', color: '#888', marginBottom: '1.5rem' },
+  title: { fontSize: '22px', fontWeight: '700', marginBottom: '4px', color: '#1a1a1a', },
+  subtitle: { fontSize: '13px', color: '#888', marginBottom: '1.5rem', color: '#1a1a1a', },
   error: {
     background: '#fef2f2',
     border: '1px solid #fca5a5',
