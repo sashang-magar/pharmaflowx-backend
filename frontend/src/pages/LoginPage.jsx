@@ -132,6 +132,7 @@ const styles = {
     outline: 'none',
     boxSizing: 'border-box',
     color: '#1a1a1a',
+    background: '#fff',
   },
   button: {
     width: '100%',
